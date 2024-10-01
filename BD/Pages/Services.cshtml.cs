@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace BD.Pages
 {
-    public class SearchModel : PageModel
+    public class ServicesModel : PageModel
     {
         /*public List<SearchResult> Results { get; set; } = new List<SearchResult>();
 
