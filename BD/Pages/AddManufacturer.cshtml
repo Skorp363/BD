@@ -1,0 +1,79 @@
+﻿@page
+@model BD.Pages.AddManufacturerModel
+@{
+	ViewBag.Title = "Добавление фирмы-изготовителя";
+	Layout = "Shared/_Layout.cshtml";
+}
+<body>
+	<div>
+		<form method="post">
+		<label>Фирма-изготовитель<input required name="Name" id="NameMan"/></label><br />
+		<label>Адрес фирмы<input name="Address" id="Address"/></label><br />
+			<label>
+				Страна фирмы
+				<select name="Country" id="CountryId">
+			<option hidden selected disabled>Выберите страну</option>
+			@foreach (var item in Model.Countries)
+			{
+						<option value="@item.Id">@item.Name</option>
+					}
+		</select></label><br />
+		<label>Телефон<input type="tel" pattern="\+[0-9]{11}" name="Phone" placeholder="+78005553535" id="Phone"/></label><br />
+		<label>ФИО директора фирмы<input name="Director" id="Director"/></label><br />
+		<label>Вид деятельности фирмы<input name="Activity" id="Activity"/></label><br />
+		<button>Добавить фирму</button>
+		</form>
+		@if (Model.Message.Count != 0)
+		{
+			<p>@Model.Message[0]</p>
+		}
+		
+		
+	</div>
+<!--<table>
+		<tr><th>ИД</th><th>Название</th></tr>
+		@foreach(var Manufacturer in Model.Manufacturers)
+		{
+			<tr>
+				<td>@Manufacturer.Id</td>
+				<td>@Manufacturer.Name</td>
+			</tr>
+		}
+		</table>-->
+
+	<script>
+		if (sessionStorage.getItem("NameMan") !== null) {
+			document.getElementById("NameMan").value = sessionStorage.getItem("NameMan");
+		}
+		if (sessionStorage.getItem("Address") !== null) {
+			document.getElementById("Address").value = sessionStorage.getItem("Address");
+		}
+		if (sessionStorage.getItem("CountryId") !== null) {
+			document.getElementById("CountryId").value = sessionStorage.getItem("CountryId");
+		}
+		if (sessionStorage.getItem("Phone") !== null) {
+			document.getElementById("Phone").value = sessionStorage.getItem("Phone");
+		}
+		if (sessionStorage.getItem("Director") !== null) {
+			document.getElementById("Director").value = sessionStorage.getItem("Director");
+		}
+		if (sessionStorage.getItem("Activity") !== null) {
+			document.getElementById("Activity").value = sessionStorage.getItem("Activity");
+		}
+
+		function SaveForm() {
+			let Name = document.getElementById("NameMan").value;
+			sessionStorage.setItem("NameMan", Name);
+			let Address = document.getElementById("Address").value;
+			sessionStorage.setItem("Address", Address);
+			let Country = document.getElementById("CountryId").value;
+			sessionStorage.setItem("CountryId", Country);
+			let Phone = document.getElementById("Phone").value;
+			sessionStorage.setItem("Phone", Phone);
+			let Director = document.getElementById("Director").value;
+			sessionStorage.setItem("Director", Director);
+			let Activity = document.getElementById("Activity").value;
+			sessionStorage.setItem("Activity", Activity);
+		}
+	</script>
+</body>

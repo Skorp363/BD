@@ -1,0 +1,209 @@
+﻿@page
+@model BD.Pages.SearchModel
+@{
+    ViewBag.Title = "Сервисы";
+    Layout = "Shared/_Layout.cshtml";
+}
+
+@section Styles{
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @* <link rel="stylesheet" href="~/css/Services.css"> *@
+
+    <style>
+        /* Основные стили для страницы сервисов */
+        .service-page {
+            max-width: 1000px; /* Общая ширина уменьшена */
+            margin: 0 auto;
+            padding: 15px;
+            font-family: Arial, sans-serif;
+        }
+
+        .search-section {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+            .search-section input {
+                padding: 8px; /* Уменьшены поля ввода */
+                width: 250px; /* Уменьшена ширина поля */
+                border-radius: 5px;
+                border: 1px solid #ccc;
+                font-size: 14px; /* Уменьшен шрифт */
+            }
+
+            .search-section button {
+                padding: 8px 12px; /* Уменьшен размер кнопки */
+                font-size: 14px; /* Уменьшен шрифт кнопки */
+                background-color: #007bff;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+                .search-section button:hover {
+                    background-color: #0056b3;
+                }
+
+        /* Стили для строк с сервисами */
+        .service-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+
+        /* Контейнер для каждого сервиса */
+        .service-container {
+            flex: 1;
+            margin-right: 15px; /* Уменьшены отступы между блоками */
+            min-height: 200px; /* Уменьшена минимальная высота */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+            .service-container:last-child {
+                margin-right: 0;
+            }
+
+        /* Виджеты внутри сервисов */
+        .service-widget {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .Calendar {
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Стили для заголовков */
+        /*h2 {
+            font-size: 1.2em;*/ /* Уменьшен размер заголовков */
+        /*text-align: center;
+        }*/
+
+        /* Виджеты, iframe, изображения внутри сервисов */
+        .service-widget iframe,
+        .service-widget div,
+        .service-widget img {
+            max-width: 100%;
+            height: auto;
+        }
+
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/bowser@2.11.0/es5.js"></script>
+    <script>
+        window.onload = function () {
+            // Проверяем, доступны ли данные о производительности
+            if (window.performance && window.performance.timing) {
+                let perfData = window.performance.timing;
+
+                let pageLoadTime = perfData.loadEventEnd - perfData.navigationStart;
+                let domContentLoadTime = perfData.domContentLoadedEventEnd - perfData.navigationStart;
+
+                if (perfData.loadEventEnd > 0) {
+                    document.getElementById("load-time").textContent = "Время полной загрузки страницы: " + pageLoadTime + " мс";
+                    document.getElementById("dom-time").textContent = "Время до загрузки DOM: " + domContentLoadTime + " мс";
+                } else {
+                    
+                    document.getElementById("dom-time").textContent = "Время загрузки сайта: " + domContentLoadTime + " мс";
+                }
+            } else {
+                document.getElementById("load-time").textContent = "API производительности не поддерживается этим браузером.";
+            }
+
+            // Характеристики компьютера
+            let screenWidth = window.screen.width;
+            let screenHeight = window.screen.height;
+            const browser = bowser.getParser(window.navigator.userAgent);
+            const browserName = browser.getBrowserName();
+            const browserVersion = browser.getBrowserVersion();
+            const osName = browser.getOSName();
+            const osVersion = browser.getOSVersion();
+
+            document.getElementById("screen-resolution").textContent = "Разрешение экрана: " + screenWidth + "x" + screenHeight;
+            document.getElementById("browser-info").textContent = "Браузер: " + browserName + " " + browserVersion;
+            document.getElementById("os-info").textContent = "Операционная система: " + osName + " " + osVersion;
+        };
+    </script>
+}
+
+<div class="service-page">
+    <!-- Поиск по сайту -->
+    <div class="search-section">
+        <div class="ya-site-form ya-site-form_inited_no" data-bem="{&quot;action&quot;:&quot;http://bd-web.ru/Services&quot;,&quot;arrow&quot;:false,&quot;bg&quot;:&quot;#ffffff&quot;,&quot;fontsize&quot;:12,&quot;fg&quot;:&quot;#000000&quot;,&quot;language&quot;:&quot;ru&quot;,&quot;logo&quot;:&quot;rb&quot;,&quot;publicname&quot;:&quot;Yandex Site Search #10651981&quot;,&quot;suggest&quot;:true,&quot;target&quot;:&quot;_self&quot;,&quot;tld&quot;:&quot;ru&quot;,&quot;type&quot;:2,&quot;usebigdictionary&quot;:true,&quot;searchid&quot;:10651981,&quot;input_fg&quot;:&quot;#000000&quot;,&quot;input_bg&quot;:&quot;#ffffff&quot;,&quot;input_fontStyle&quot;:&quot;normal&quot;,&quot;input_fontWeight&quot;:&quot;normal&quot;,&quot;input_placeholder&quot;:&quot;&quot;,&quot;input_placeholderColor&quot;:&quot;#000000&quot;,&quot;input_borderColor&quot;:&quot;#7f9db9&quot;}"><form action="https://yandex.ru/search/site/" method="get" target="_self" accept-charset="utf-8"><input type="hidden" name="searchid" value="10651981" /><input type="hidden" name="l10n" value="ru" /><input type="hidden" name="reqenc" value="" /><input type="search" name="text" value="" /><input type="submit" value="Найти" /></form></div><style type="text/css">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     }</style><script type="text/javascript">(function (w, d, c) { var s = d.createElement('script'), h = d.getElementsByTagName('script')[0], e = d.documentElement; if ((' ' + e.className + ' ').indexOf(' ya-page_js_yes ') === -1) { e.className += ' ya-page_js_yes'; } s.type = 'text/javascript'; s.async = true; s.charset = 'utf-8'; s.src = (d.location.protocol === 'https:' ? 'https:' : 'http:') + '//site.yandex.net/v2.0/js/all.js'; h.parentNode.insertBefore(s, h); (w[c] || (w[c] = [])).push(function () { Ya.Site.Form.init() }) })(window, document, 'yandex_site_callbacks');</script>
+        <div id="ya-site-results" data-bem="{&quot;tld&quot;: &quot;ru&quot;,&quot;language&quot;: &quot;ru&quot;,&quot;encoding&quot;: &quot;&quot;,&quot;htmlcss&quot;: &quot;1.x&quot;,&quot;updatehash&quot;: true}"></div><script type="text/javascript">(function (w, d, c) { var s = d.createElement('script'), h = d.getElementsByTagName('script')[0]; s.type = 'text/javascript'; s.async = true; s.charset = 'utf-8'; s.src = (d.location.protocol === 'https:' ? 'https:' : 'http:') + '//site.yandex.net/v2.0/js/all.js'; h.parentNode.insertBefore(s, h); (w[c] || (w[c] = [])).push(function () { Ya.Site.Results.init(); }) })(window, document, 'yandex_site_callbacks');</script>
+    </div>
+
+    <!-- Первая строка: курс валют и погода -->
+    <div class="service-row">
+        <!-- Курс валют -->
+        <div class="service-container">
+            <h2>Курс валют</h2>
+            <div class="service-widget">
+                <fxwidget-er inverse="false" amount="100" decimals="2" large="false" shadow="true" symbol="true" flag="true" changes="true" grouping="true" border="false" main-curr="RUB" sel-curr="EUR,USD" background-color="#5d8aa8" lang="ru" border-radius="0.1"></fxwidget-er>
+                <script async src="https://s.fx-w.io/widgets/exchange-rates/latest.js?ru"></script>
+            </div>
+        </div>
+
+        <!-- Прогноз погоды -->
+        <div class="service-container">
+            <h2>Прогноз погоды</h2>
+            <div class="service-widget">
+                <div id="ww_449b95ee7f7a1" v='1.3' loc='auto' a='{"t":"horizontal","lang":"ru","ids":[],"font":"Arial","sl_ics":"one_a","sl_sot":"celsius","cl_bkg":"image","cl_font":"#FFFFFF","cl_cloud":"#FFFFFF","cl_persp":"#81D4FA","cl_sun":"#FFC107","cl_moon":"#FFC107","cl_thund":"#FF5722","el_whr":3}'><a href="https://weatherwidget.org/ru/" id="ww_449b95ee7f7a1_u" target="_blank">Погодный информер погоды на сайт</a></div><script async src="https://app3.weatherwidget.org/js/?id=ww_449b95ee7f7a1"></script>
+                <script async src="https://app3.weatherwidget.org/js/?id=ww_11e87ec077069"></script>
+            </div>
+        </div>
+    </div>
+
+    <!-- Вторая строка: текущее время и календарь -->
+    <div class="service-row">
+        <!-- Текущее время -->
+        <div class="service-container">
+            <h2>Текущее время в Обнинске</h2>
+            <div class="service-widget">
+                <a href="https://time.is/Obninsk" id="time_is_link" rel="nofollow" style="font-size:20px"></a>
+                <span id="Obninsk_z71d" style="font-size:20px"></span>
+                <script src="//widget.time.is/ru.js"></script>
+                <script>
+                    time_is_widget.init({ Obninsk_z71d: { template: "TIME<br>DATE", date_format: "dayname daynum.monthnum.yy" } });
+                </script>
+            </div>
+        </div>
+
+        <!-- Календарь -->
+        <div class="service-container">
+            <h2>Календарь</h2>
+            <div class="Calendar">
+                <iframe src="https://calendar.google.com/calendar/embed?height=200&wkst=2&ctz=Europe%2FMinsk&bgcolor=%23ffffff&showTitle=0&showPrint=0&showCalendars=0&showTz=0&src=bWlyb25vdi55dTIwMTZAZ21haWwuY29t&color=%23039BE5" style="border:solid 1px #777" width="250" height="250" frameborder="0" scrolling="no"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Третья строка: производительность сайта и характеристики компьютера -->
+    <div class="service-row">
+        <!-- Оценка производительности сайта -->
+        <div class="service-container">
+            <h2>Оценка производительности сайта</h2>
+            <div class="service-widget">
+                <p id="load-time"></p>
+                <p id="dom-time"></p>
+            </div>
+        </div>
+
+        <!-- Характеристики компьютера -->
+        <div class="service-container">
+            <h2>Характеристики компьютера</h2>
+            <div class="service-widget">
+                <p id="screen-resolution"></p>
+                <p id="browser-info"></p>
+                <p id="os-info"></p>
+            </div>
+        </div>
+    </div>
+</div>

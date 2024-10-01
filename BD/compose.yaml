@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - 80:8080
+    depends_on:
+      - db
+    restart: always
+    environment:
+      ConnectionStrings__DefaultConnection1: "Host=db;Port=5432;Database=ECBase;Username=postgres;Password=RoDiTeLi"
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: ECBase
+      POSTGRES_PASSWORD: RoDiTeLi

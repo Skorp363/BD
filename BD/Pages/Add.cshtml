@@ -1,0 +1,189 @@
+﻿@page
+
+@model BD.Pages.AddModel
+@{
+	ViewBag.Title = "Добавление детали";
+	Layout = "Shared/_Layout.cshtml";
+}
+<body>
+	<div>
+		<form method="post">
+		<label>Название(Обязательно)<input required name="Name" id="prop1"/></label><br />
+		<label>Цена<input type="number" name="Price" id="prop2"/></label><br />
+		<label>Тип детали</label>
+			<select required style="width: 150px" name="Part_typeId" id="prop3">
+				
+				<option hidden disabled>Выберите тип детали</option>
+				
+					@foreach (var item in Model.Types)
+					{
+						<option value="@item.Id">@item.Name</option>
+					}
+				
+			</select>
+		<br />
+		<label>Модель детали<input name="Model" id="prop4"/></label><br />
+			<label>Рабочее напряжение, В<input type="number" name="Operating_voltage" id="prop5"/></label><br />
+			<label>Минимальная раб. темп., С<input type="number" name="MinOperating_Temp" id="prop6" /></label><br />
+			<label>Максимальная раб. темп., С<input type="number" name="MaxOperating_Temp" id="prop7" /></label>
+			<br />
+			<label>Ёмкость, нФ<input type="number" name="Capacity" id="prop8" /></label><br />
+			<label>Мощность, Вт<input type="number" name="Power" id="prop9" /></label><br />
+			<label>Сопротивление, Ом<input type="number" name="Resistance" id="prop10" /></label><br />
+			<label>Сила тока, А<input type="number" name="Electric_current" id="prop11" /></label><br />
+			<label>Индуктивность, мГн<input type="number" name="Inductance" id="prop12" /></label><br />
+		<label>Страна производства(Обязательно)</label>
+			<select required name="CountryId" style="width: 150px" id="prop13">
+				<option hidden disabled>Выберите страну</option>
+				
+					@foreach (var item in Model.Country)
+					{
+						<option  value="@item.Id">@item.Name</option>
+					}
+			</select><br />
+		<label>Материал(Обязательно)</label>
+			<select required name="MaterialId" style="width: 150px" id="prop14">
+				<option disabled hidden>Выберите материал</option>
+				
+					@foreach(var item in Model.Materials)
+					{
+						<option value="@item.Id">@item.Name</option>
+					}
+			</select>
+			<input type="button" onclick="SaveForm(); window.location.href='AddMaterial';" value="Добавить материал" />
+		<br />
+		<label>Изготовитель(Обязательно)</label>
+			<select required name="ManufacturerId" style="width: 150px" id="prop15">
+				<option hidden disabled>Выберите производителя</option>
+				
+					@foreach(var item in Model.Manufacturers)
+					{
+						<option value="@item.Id">@item.Name</option>
+					}
+			</select>
+			<input type="button" onclick="SaveForm(); window.location.href='AddManufacturer';" value="Добавить изготовителя" />
+		<br />
+		<button onclick="DeleteItem1()">Добавить деталь</button>
+		</form>
+		@if(Model.Message.Count != 0)
+		{
+			<p>@Model.Message[0]</p>
+		}
+
+<!--	<table>
+			<tr><th>ИД</th><th>Название</th></tr>
+			@foreach(var Details in Model.Details)
+			{
+				<tr><td>@Details.Id</td><td>@Details.Name</td></tr>
+			}
+		</table>-->
+		<script>
+			if (sessionStorage.getItem("NameDet") !== null) {
+				document.getElementById("prop1").value = sessionStorage.getItem("NameDet");
+			}
+			if (sessionStorage.getItem("Price") !== null) {
+				document.getElementById("prop2").value = sessionStorage.getItem("Price");
+			}
+			if (sessionStorage.getItem("Part_typeId") !== null) {
+				document.getElementById("prop3").value = sessionStorage.getItem("Part_typeId");
+			}
+			if (sessionStorage.getItem("Model") !== null) {
+				document.getElementById("prop4").value = sessionStorage.getItem("Model");
+			}
+			if (sessionStorage.getItem("Operating_voltage") !== null) {
+				document.getElementById("prop5").value = sessionStorage.getItem("Operating_voltage");
+			}
+			if (sessionStorage.getItem("MinOperating_Temp") !== null) {
+				document.getElementById("prop6").value = sessionStorage.getItem("MinOperating_Temp");
+			}
+			if (sessionStorage.getItem("MaxOperating_Temp") !== null) {
+				document.getElementById("prop7").value = sessionStorage.getItem("MaxOperating_Temp");
+			}
+			if (sessionStorage.getItem("Capacity") !== null) {
+				document.getElementById("prop8").value = sessionStorage.getItem("Capacity");
+			}
+			if (sessionStorage.getItem("Power") !== null) {
+				document.getElementById("prop9").value = sessionStorage.getItem("Power");
+			}
+			if (sessionStorage.getItem("Resistance") !== null) {
+				document.getElementById("prop10").value = sessionStorage.getItem("Resistance");
+			}
+			if (sessionStorage.getItem("Electric_current") !== null) {
+				document.getElementById("prop11").value = sessionStorage.getItem("Electric_current");
+			}
+			if (sessionStorage.getItem("Inductance") !== null) {
+				document.getElementById("prop12").value = sessionStorage.getItem("Inductance");
+			}
+			if (sessionStorage.getItem("CountryId") !== null) {
+				document.getElementById("prop13").value = sessionStorage.getItem("CountryId");
+			}
+			if (sessionStorage.getItem("MaterialId") !== null) {
+				document.getElementById("prop14").value = sessionStorage.getItem("MaterialId");
+			}
+			if (sessionStorage.getItem("ManufacturerId") !== null) {
+				document.getElementById("prop15").value = sessionStorage.getItem("ManufacturerId");
+			}
+
+
+			function SaveForm() {
+				let Name = document.getElementById("prop1").value;
+				sessionStorage.setItem("NameDet", Name);
+				let Price = document.getElementById("prop2").value;
+				sessionStorage.setItem("Price", Price);
+				let Part_type = document.getElementById("prop3").value;
+				sessionStorage.setItem("Part_typeId", Part_type);
+				let Model = document.getElementById("prop4").value;
+				sessionStorage.setItem("Model", Model);
+				let Operating_voltage = document.getElementById("prop5").value;
+				sessionStorage.setItem("Operating_voltage", Operating_voltage);
+				let MinOperTemp = document.getElementById("prop6").value;
+				sessionStorage.setItem("MinOperating_Temp", MinOperTemp);
+				let MaxOperTemp = document.getElementById("prop7").value;
+				sessionStorage.setItem("MaxOperating_Temp", MaxOperTemp);
+				let Capacity = document.getElementById("prop8").value;
+				sessionStorage.setItem("Capacity", Capacity);
+				let Power = document.getElementById("prop9").value;
+				sessionStorage.setItem("Power", Power);
+				let Resistance = document.getElementById("prop10").value;
+				sessionStorage.setItem("Resistance", Resistance);
+				let Electric_current = document.getElementById("prop11").value;
+				sessionStorage.setItem("Electric_current", Electric_current);
+				let Inductance = document.getElementById("prop12").value;
+				sessionStorage.setItem("Inductance", Inductance);
+				let Country = document.getElementById("prop13").value;
+				sessionStorage.setItem("CountryId", Country);
+				let Material = document.getElementById("prop14").value;
+				sessionStorage.setItem("MaterialId", Material);
+				let Manufacturer = document.getElementById("prop15").value;
+				sessionStorage.setItem("ManufacturerId", Manufacturer);
+			}
+
+			function DeleteItem1()
+			{
+				let MinTemp = document.getElementById("prop6").value;
+				let MaxTemp = document.getElementById("prop7").value;
+				
+				if (MinTemp <= MaxTemp) {
+					console.log(MinTemp);
+					sessionStorage.removeItem("NameDet");
+					sessionStorage.removeItem("Price");
+					sessionStorage.removeItem("Part_typeId");
+					sessionStorage.removeItem("Model");
+					sessionStorage.removeItem("Operating_voltage");
+					sessionStorage.removeItem("MinOperating_Temp");
+					sessionStorage.removeItem("MaxOperating_Temp");
+					sessionStorage.removeItem("Capacity");
+					sessionStorage.removeItem("Power");
+					sessionStorage.removeItem("Resistance");
+					sessionStorage.removeItem("Electric_current");
+					sessionStorage.removeItem("Inductance");
+					sessionStorage.removeItem("CountryId");
+					sessionStorage.removeItem("MaterialId");
+					sessionStorage.removeItem("ManufacturerId");
+				}
+			}
+
+
+		</script>
+	</div>
+</body>

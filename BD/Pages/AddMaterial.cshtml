@@ -1,0 +1,39 @@
+﻿@page
+@model BD.Pages.AddMaterialModel
+@{
+	ViewBag.Title = "Добавление материала";
+	Layout = "Shared/_Layout.cshtml";
+}
+<body>
+	<form method="post">
+		<label>Материал<input required name="Name" id="NameMat"/></label><br/>
+		<button type="submit">Добавить материал</button>
+		@if (Model.Message.Count != 0)
+		{
+			<p>@Model.Message[0]</p>
+		}
+	</form>
+	
+<!--	<table>
+		<tr><th>ИД</th><th>Материал</th></tr>
+		
+		@foreach (var Material in Model.Materials)
+		{
+				<tr>
+					<td>@Material.Id</td>
+					<td>@Material.Name</td>
+				</tr>
+		}
+		</table>-->
+
+	<script>
+		if (sessionStorage.getItem("NameMat") !== null) {
+			document.getElementById("NameMat").value = sessionStorage.getItem("NameMat");
+		}
+		function SaveForm() {
+			let Name = document.getElementById("NameMat").value;
+			sessionStorage.setItem("NameMat", Name);
+		}
+	</script>
+	
+</body>

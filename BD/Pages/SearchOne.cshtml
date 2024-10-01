@@ -1,0 +1,76 @@
+﻿@page
+@model BD.Pages.SearchOneModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+	ViewBag.Title = "Поиск";
+	Layout = "Shared/_Layout.cshtml";
+}
+
+<body>
+	
+	<div style="display: grid; top: 50px; grid-template-columns: 0.3fr 0.3fr; justify-items: left">
+		<form method="post" asp-page-handler="One" id="One">
+			
+			<div class="Search" style="display: flex; flex-direction: column; gap: 0.5rem; width: 120%;">
+				<label>Страна произвдства: </label>
+					<select required name="CountryId" id="Country">
+					<option selected value="@Model.Countries[0].Id">@Model.Countries[0].Name</option>
+					@foreach(var item in Model.Countries.Skip(1))
+					{
+						<option value="@item.Id">@item.Name</option>
+					}
+				</select>
+				<button onclick="DeleteItem()" style="width:40%">Поиск</button>
+			</div>
+		</form>
+			
+		
+			
+	</div>
+
+
+
+	<table>
+		@if (Model.DetailSearch.Count != 0)
+		{
+			<tr><th>Название</th><th>Цена, руб.</th><th>Страна изготовления</th><th>Тип</th><th>Модель</th><th>Рабочее напряжение, В</th><th>Мин. раб. темп., С</th><th>Макс. раб. темп., С</th><th>Ёмкость, нФ</th><th>Мощность, Вт</th><th>Сопротивление, Ом</th><th>Сила тока, А</th><th>Индуктивность, мГн</th><th>Материал</th><th>Производитель</th></tr>
+		}
+		@foreach(var item in Model.DetailSearch)
+		{
+			<tr>
+				<td>@item.Name</td>
+				<td>@item.Price</td>
+				<td>@item.Country.Name</td>
+				<td>@item.Part_type.Name</td>
+				<td>@item.Model</td>
+				<td>@item.Operating_voltage</td>
+				<td>@item.MinOperating_Temp</td>
+				<td>@item.MaxOperating_Temp</td>
+				<td>@item.Capacity</td>
+				<td>@item.Power</td>
+				<td>@item.Resistance</td>
+				<td>@item.Electric_current</td>
+				<td>@item.Inductance</td>
+				<td>@item.Material.Name</td>
+				<td>@item.Manufacturer.Name</td>
+			</tr>
+		}
+	</table>
+
+	<script>
+		if (sessionStorage.getItem("Country") !== null) {
+			document.getElementById("Country").value = sessionStorage.getItem("Country");
+		}
+
+		function SaveForm() {
+			let Country = document.getElementById("Country").value;
+			sessionStorage.setItem("Country", Country);
+		}
+
+		function DeleteItem() {
+			
+			sessionStorage.removeItem("Country");
+			console.log(345);
+		}
+	</script>
+</body>
