@@ -1,0 +1,15 @@
+﻿@page
+@model SpaceObjectBD.Pages.XMLModel
+@{
+    ViewBag.Title = "XML";
+    Layout = "Shared/_Layout.cshtml";
+}
+
+<body>
+    <main>
+        <div class="main-container">
+            @Html.Raw(Model.TransformedXml)
+        </div>
+    </main>
+</body>
+

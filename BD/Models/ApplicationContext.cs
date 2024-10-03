@@ -13,8 +13,6 @@ namespace BD.Models
 		{
 			
 		}
-		
-
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 			modelBuilder.Entity<Country>().HasData(

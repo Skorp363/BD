@@ -31,6 +31,7 @@
     <None Include="wwwroot\css\Index.css" />
     <None Include="wwwroot\css\Services.css" />
     <None Include="wwwroot\css\_Layout.css" />
+    <None Include="wwwroot\xsl\transform.xsl" />
   </ItemGroup>
 
 </Project>

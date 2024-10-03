@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<appliances>
+	<appliance id="1">
+		<name>Холодильник</name>
+		<model>LG GR-M802</model>
+		<power>1200</power>
+		<voltage>220</voltage>
+		<color>Белый</color>
+		<weight>70</weight>
+		<dimensions>180x80x70</dimensions>
+		<energyClass>A+</energyClass>
+		<manufactureYear>2022</manufactureYear>
+		<country>Южная Корея</country>
+	</appliance>
+	<appliance id="2">
+		<name>Чайник</name>
+		<model>Philips HD4646</model>
+		<power>2000</power>
+		<voltage>220</voltage>
+		<color>Синий</color>
+		<weight>1.2</weight>
+		<dimensions>25x15x15</dimensions>
+		<energyClass>B</energyClass>
+		<manufactureYear>2021</manufactureYear>
+		<country>Китай</country>
+	</appliance>
+	<appliance id="3">
+		<name>Утюг</name>
+		<model>Bosch TDA5024010</model>
+		<power>2400</power>
+		<voltage>220</voltage>
+		<color>Черный</color>
+		<weight>1.5</weight>
+		<dimensions>30x12x15</dimensions>
+		<energyClass>A</energyClass>
+		<manufactureYear>2020</manufactureYear>
+		<country>Германия</country>
+	</appliance>
+	<appliance id="4">
+		<name>Микроволновка</name>
+		<model>Samsung ME83KRW-1</model>
+		<power>800</power>
+		<voltage>220</voltage>
+		<color>Серебристый</color>
+		<weight>12</weight>
+		<dimensions>45x30x35</dimensions>
+		<energyClass>B+</energyClass>
+		<manufactureYear>2019</manufactureYear>
+		<country>Малайзия</country>
+	</appliance>
+	<appliance id="5">
+		<name>Стиральная машина</name>
+		<model>Whirlpool FWDG96148</model>
+		<power>1500</power>
+		<voltage>220</voltage>
+		<color>Белый</color>
+		<weight>75</weight>
+		<dimensions>85x60x60</dimensions>
+		<energyClass>A++</energyClass>
+		<manufactureYear>2021</manufactureYear>
+		<country>Италия</country>
+	</appliance>
+	<appliance id="6">
+		<name>Пылесос</name>
+		<model>Dyson V11</model>
+		<power>185</power>
+		<voltage>29.4</voltage>
+		<color>Синий</color>
+		<weight>3</weight>
+		<dimensions>125x25x20</dimensions>
+		<energyClass>A</energyClass>
+		<manufactureYear>2023</manufactureYear>
+		<country>Великобритания</country>
+	</appliance>
+	<appliance id="7">
+		<name>Кондиционер</name>
+		<model>Midea MSMABU-12HRN1</model>
+		<power>3500</power>
+		<voltage>220</voltage>
+		<color>Белый</color>
+		<weight>32</weight>
+		<dimensions>80x30x25</dimensions>
+		<energyClass>A++</energyClass>
+		<manufactureYear>2020</manufactureYear>
+		<country>Китай</country>
+	</appliance>
+	<appliance id="8">
+		<name>Блендер</name>
+		<model>Braun MQ525</model>
+		<power>600</power>
+		<voltage>220</voltage>
+		<color>Красный</color>
+		<weight>0.85</weight>
+		<dimensions>40x6x6</dimensions>
+		<energyClass>A</energyClass>
+		<manufactureYear>2022</manufactureYear>
+		<country>Венгрия</country>
+	</appliance>
+	<appliance id="9">
+		<name>Духовой шкаф</name>
+		<model>Electrolux EOB3400BOR</model>
+		<power>2100</power>
+		<voltage>220</voltage>
+		<color>Черный</color>
+		<weight>38</weight>
+		<dimensions>60x60x57</dimensions>
+		<energyClass>A</energyClass>
+		<manufactureYear>2021</manufactureYear>
+		<country>Швеция</country>
+	</appliance>
+	<appliance id="10">
+		<name>Телевизор</name>
+		<model>Sony KD-55XH9096</model>
+		<power>165</power>
+		<voltage>220</voltage>
+		<color>Черный</color>
+		<weight>18</weight>
+		<dimensions>123x71x7</dimensions>
+		<energyClass>A+</energyClass>
+		<manufactureYear>2023</manufactureYear>
+		<country>Япония</country>
+	</appliance>
+	<appliance id="11">
+		<name>Тостер</name>
+		<model>Philips HD2595</model>
+		<power>800</power>
+		<voltage>220</voltage>
+		<color>Черный</color>
+		<weight>1.3</weight>
+		<dimensions>30x20x15</dimensions>
+		<energyClass>B</energyClass>
+		<manufactureYear>2021</manufactureYear>
+		<country>Китай</country>
+	</appliance>
+	<appliance id="12">
+		<name>Электрическая плита</name>
+		<model>GEFEST 6140-02</model>
+		<power>3000</power>
+		<voltage>220</voltage>
+		<color>Белый</color>
+		<weight>50</weight>
+		<dimensions>85x60x60</dimensions>
+		<energyClass>A</energyClass>
+		<manufactureYear>2018</manufactureYear>
+		<country>Беларусь</country>
+	</appliance>
+	<appliance id="13">
+		<name>Соковыжималка</name>
+		<model>Panasonic MJ-L500</model>
+		<power>150</power>
+		<voltage>220</voltage>
+		<color>Белый</color>
+		<weight>4</weight>
+		<dimensions>45x20x15</dimensions>
+		<energyClass>A</energyClass>
+		<manufactureYear>2020</manufactureYear>
+		<country>Малайзия</country>
+	</appliance>
+	<appliance id="14">
+		<name>Мультиварка</name>
+		<model>Redmond RMC-M90</model>
+		<power>860</power>
+		<voltage>220</voltage>
+		<color>Черный</color>
+		<weight>4.7</weight>
+		<dimensions>30x30x30</dimensions>
+		<energyClass>A</energyClass>
+		<manufactureYear>2022</manufactureYear>
+		<country>Россия</country>
+	</appliance>
+	<appliance id="15">
+		<name>Кофемашина</name>
+		<model>DeLonghi ECAM22.110</model>
+		<power>1450</power>
+		<voltage>220</voltage>
+		<color>Серебристый</color>
+		<weight>9</weight>
+		<dimensions>43x24x35</dimensions>
+		<energyClass>A</energyClass>
+		<manufactureYear>2023</manufactureYear>
+		<country>Италия</country>
+	</appliance>
+</appliances>
