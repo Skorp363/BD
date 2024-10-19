@@ -1,10 +1,12 @@
 ﻿using BD.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
 namespace BD.Pages
 {
+	[Authorize]
 	[IgnoreAntiforgeryToken]
 	public class AddModel : PageModel
 	{

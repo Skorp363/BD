@@ -151,7 +151,7 @@
             <div class="dropdown">
                 <button class="dropbtn">Работа с БД</button>
                 <div class="dropdown-content">
-                    <a href="Add" onclick="SaveForm(); DeleteItem();">Добавление детали</a>
+                    <a href="Add" id="add" onclick="SaveForm(); DeleteItem();">Добавление детали</a>
                     <a href="SearchOne" onclick="SaveForm(); DeleteItem();">Поиск по стране</a>
                     <a href="SearchTwo" onclick="SaveForm(); DeleteItem();">Поиск по производителю и названию</a>
                     <a href="Statistic" onclick="SaveForm(); DeleteItem();">Статистика</a>
@@ -177,6 +177,13 @@
             <!-- Сервисы -->
             <button onclick="window.location.href='Services'; SaveForm(); DeleteItem()">Сервисы</button>
             <button onclick="window.location.href='XML'; SaveForm(); DeleteItem()">XML</button>
+
+            <!-- Вход / Регистрация -->
+            <button onclick="window.location.href='Login'" class="ReistrationLogin-Button" id="ReistrationLoginButton">Вход / Регистрация</button>
+            <div id="userInfo" style="display:none;">
+                <p>Добро пожаловать <span id="userName"></span>!</p>
+                <input type="button" value="Выйти" id="logOut" />
+            </div>
         </nav>
 
         <!-- Заголовок сайта -->
@@ -232,7 +239,39 @@
             </div>
         </div>
     </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", async () => {
+            const response = await fetch("/api/user", {
+                method: "GET",
+                credentials: "include"
+            });
+
+            if (response.ok) {
+                const userData = await response.json();
+                if (userData.username) {
+                    document.getElementById("userName").innerText = userData.username;
+                    document.getElementById("userInfo").style.display = "flex";
+                    document.getElementById("userInfo").style.border = "2px solid green";
+                    document.getElementById("ReistrationLoginButton").style.display = "none";
+                    document.getElementById("add").style.background = "";
+                } else {
+                    document.getElementById("add").style.background = "red";
+                }
+            } else {
+                document.getElementById("add").style.background = "red";
+            }
+        });
+
+        document.getElementById("logOut").addEventListener("click", async (e) => {
+            e.preventDefault();
+            await fetch("/logout", { method: "POST", credentials: "include" });
+            document.getElementById("userName").innerText = "";
+            document.getElementById("userInfo").style.display = "none";
+            document.getElementById("userInfo").style.border = "";
+            document.getElementById("ReistrationLoginButton").style.display = "flex";
+            document.getElementById("add").style.background = "red";
+            window.location.href = '/';
+        });
+    </script>
 </body>
-
-
 </html>

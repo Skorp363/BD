@@ -1,0 +1,26 @@
+@page
+@model BD.Pages.LoginModel
+@{
+    ViewBag.Title = "Вход";
+    Layout = "Shared/_Layout.cshtml";
+}
+
+<body>
+    <section class="form-container">
+        <img src="pictures/BackgroundBlack.jpg" class="img-Background">
+        <h1>Вход</h1>
+        <form method="post" action="/login" class="login-form" id="loginForm">
+            <div class="error-message"></div>
+
+            <label>Имя пользователя</label>
+            <input type="text" id="username" name="Username">
+
+            <label>Пароль</label>
+            <input type="password" id="password" name="PasswordHash">
+
+            <button type="submit" id="submitLogin">Войти</button>
+            <div>Нет аккаунта? <a href="Registration">Зарегистрироваться</a></div>
+        </form>
+    </section>
+    <script src="/js/OptionLogin.js"></script>
+</body>

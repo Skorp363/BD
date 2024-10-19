@@ -8,22 +8,22 @@
 <body>
 	<div>
 		<form method="post">
-		<label>Название(Обязательно)<input required name="Name" id="prop1"/></label><br />
-		<label>Цена<input type="number" name="Price" id="prop2"/></label><br />
-		<label>Тип детали</label>
+			<label>Название(Обязательно)<input required name="Name" id="prop1" /></label><br />
+			<label>Цена<input type="number" name="Price" id="prop2" /></label><br />
+			<label>Тип детали</label>
 			<select required style="width: 150px" name="Part_typeId" id="prop3">
-				
+
 				<option hidden disabled>Выберите тип детали</option>
-				
-					@foreach (var item in Model.Types)
-					{
-						<option value="@item.Id">@item.Name</option>
-					}
-				
+
+				@foreach (var item in Model.Types)
+				{
+					<option value="@item.Id">@item.Name</option>
+				}
+
 			</select>
-		<br />
-		<label>Модель детали<input name="Model" id="prop4"/></label><br />
-			<label>Рабочее напряжение, В<input type="number" name="Operating_voltage" id="prop5"/></label><br />
+			<br />
+			<label>Модель детали<input name="Model" id="prop4" /></label><br />
+			<label>Рабочее напряжение, В<input type="number" name="Operating_voltage" id="prop5" /></label><br />
 			<label>Минимальная раб. темп., С<input type="number" name="MinOperating_Temp" id="prop6" /></label><br />
 			<label>Максимальная раб. темп., С<input type="number" name="MaxOperating_Temp" id="prop7" /></label>
 			<br />
@@ -32,51 +32,51 @@
 			<label>Сопротивление, Ом<input type="number" name="Resistance" id="prop10" /></label><br />
 			<label>Сила тока, А<input type="number" name="Electric_current" id="prop11" /></label><br />
 			<label>Индуктивность, мГн<input type="number" name="Inductance" id="prop12" /></label><br />
-		<label>Страна производства(Обязательно)</label>
+			<label>Страна производства(Обязательно)</label>
 			<select required name="CountryId" style="width: 150px" id="prop13">
 				<option hidden disabled>Выберите страну</option>
-				
-					@foreach (var item in Model.Country)
-					{
-						<option  value="@item.Id">@item.Name</option>
-					}
+
+				@foreach (var item in Model.Country)
+				{
+					<option value="@item.Id">@item.Name</option>
+				}
 			</select><br />
-		<label>Материал(Обязательно)</label>
+			<label>Материал(Обязательно)</label>
 			<select required name="MaterialId" style="width: 150px" id="prop14">
 				<option disabled hidden>Выберите материал</option>
-				
-					@foreach(var item in Model.Materials)
-					{
-						<option value="@item.Id">@item.Name</option>
-					}
+
+				@foreach (var item in Model.Materials)
+				{
+					<option value="@item.Id">@item.Name</option>
+				}
 			</select>
 			<input type="button" onclick="SaveForm(); window.location.href='AddMaterial';" value="Добавить материал" />
-		<br />
-		<label>Изготовитель(Обязательно)</label>
+			<br />
+			<label>Изготовитель(Обязательно)</label>
 			<select required name="ManufacturerId" style="width: 150px" id="prop15">
 				<option hidden disabled>Выберите производителя</option>
-				
-					@foreach(var item in Model.Manufacturers)
-					{
-						<option value="@item.Id">@item.Name</option>
-					}
+
+				@foreach (var item in Model.Manufacturers)
+				{
+					<option value="@item.Id">@item.Name</option>
+				}
 			</select>
 			<input type="button" onclick="SaveForm(); window.location.href='AddManufacturer';" value="Добавить изготовителя" />
-		<br />
-		<button onclick="DeleteItem1()">Добавить деталь</button>
+			<br />
+			<button onclick="DeleteItem1()">Добавить деталь</button>
 		</form>
-		@if(Model.Message.Count != 0)
+		@if (Model.Message.Count != 0)
 		{
 			<p>@Model.Message[0]</p>
 		}
 
-<!--	<table>
-			<tr><th>ИД</th><th>Название</th></tr>
-			@foreach(var Details in Model.Details)
-			{
-				<tr><td>@Details.Id</td><td>@Details.Name</td></tr>
-			}
-		</table>-->
+		<!--	<table>
+					<tr><th>ИД</th><th>Название</th></tr>
+		@foreach (var Details in Model.Details)
+		{
+							<tr><td>@Details.Id</td><td>@Details.Name</td></tr>
+		}
+				</table>-->
 		<script>
 			if (sessionStorage.getItem("NameDet") !== null) {
 				document.getElementById("prop1").value = sessionStorage.getItem("NameDet");
@@ -158,11 +158,10 @@
 				sessionStorage.setItem("ManufacturerId", Manufacturer);
 			}
 
-			function DeleteItem1()
-			{
+			function DeleteItem1() {
 				let MinTemp = document.getElementById("prop6").value;
 				let MaxTemp = document.getElementById("prop7").value;
-				
+
 				if (MinTemp <= MaxTemp) {
 					console.log(MinTemp);
 					sessionStorage.removeItem("NameDet");
@@ -182,8 +181,6 @@
 					sessionStorage.removeItem("ManufacturerId");
 				}
 			}
-
-
 		</script>
 	</div>
 </body>

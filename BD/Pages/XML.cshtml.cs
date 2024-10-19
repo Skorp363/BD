@@ -3,7 +3,7 @@ using System.Xml;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace SpaceObjectBD.Pages
+namespace BD.Pages
 {
     public class XMLModel : PageModel
     {

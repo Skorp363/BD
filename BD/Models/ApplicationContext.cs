@@ -9,6 +9,7 @@ namespace BD.Models
 		public DbSet<Material> Materials { get; set; } = null!;
 		public DbSet<Type> Types { get; set; } = null!;
 		public DbSet<Country> Countries { get; set; }
+		public DbSet<User> Users { get; set; } = null!;
 		public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
 		{
 			

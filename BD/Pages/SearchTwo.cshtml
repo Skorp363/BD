@@ -23,29 +23,36 @@
 
 		<form method="post" asp-page-handler="Second">
 			<input type="hidden" name="NameId" value="@Model.ManId" id="DetailId" />
-			<label>
-				Название детали:
-			</label><br />
+			<label>Название детали:</label><br />
 
 			<select required name="Name" style="width: 180px" id="Detail">
-
 				@foreach (var item in Model.Names)
 				{
 					<option value="@item">@item</option>
 				}
-
-			</select>
-			<br />
-
+			</select><br />
 			<button onclick="DeleteItem()" style="width:70px">Поиск</button>
-
 		</form>
 	</div>
 
 	<table>
 		@if (Model.DetailSearch.Count != 0)
 		{
-			<tr><th>Название</th><th>Цена, руб.</th><th>Страна изготовления</th><th>Тип</th><th>Модель</th><th>Рабочее напряжение, В</th><th>Мин. раб. темп., С</th><th>Макс. раб. темп., С</th><th>Ёмкость, нФ</th><th>Мощность, Вт</th><th>Сопротивление, Ом</th><th>Сила тока, А</th><th>Индуктивность, мГн</th><th>Материал</th><th>Производитель</th></tr>
+			<tr>
+				<th>Название</th>
+				<th>Цена, руб.</th>
+				<th>Страна изготовления</th>
+				<th>Тип</th><th>Модель</th>
+				<th>Рабочее напряжение, В</th>
+				<th>Мин. раб. темп., С</th>
+				<th>Макс. раб. темп., С</th>
+				<th>Ёмкость, нФ</th><th>Мощность, Вт</th>
+				<th>Сопротивление, Ом</th>
+				<th>Сила тока, А</th>
+				<th>Индуктивность, мГн</th>
+				<th>Материал</th>
+				<th>Производитель</th>
+			</tr>
 		}
 		@foreach (var item in Model.DetailSearch)
 		{
