@@ -4,24 +4,33 @@
 	ViewBag.Title = "Добавление фирмы-изготовителя";
 	Layout = "Shared/_Layout.cshtml";
 }
+
+@section Styles {
+	<link rel="stylesheet" href="~/css/Add.css">
+	
+}
+
 <body>
-	<div>
+	<div class="add-page">
 		<form method="post">
-		<label>Фирма-изготовитель<input required name="Name" id="NameMan"/></label><br />
-		<label>Адрес фирмы<input name="Address" id="Address"/></label><br />
-			<label>
-				Страна фирмы
-				<select name="Country" id="CountryId">
-			<option hidden selected disabled>Выберите страну</option>
-			@foreach (var item in Model.Countries)
-			{
-						<option value="@item.Id">@item.Name</option>
-					}
-		</select></label><br />
-		<label>Телефон<input type="tel" pattern="\+[0-9]{11}" name="Phone" placeholder="+78005553535" id="Phone"/></label><br />
-		<label>ФИО директора фирмы<input name="Director" id="Director"/></label><br />
-		<label>Вид деятельности фирмы<input name="Activity" id="Activity"/></label><br />
-		<button>Добавить фирму</button>
+			<label>Фирма-изготовитель<input required name="Name" maxlength="30" id="NameMan"/></label><br />
+			<label>Адрес фирмы<input name="Address" maxlength="50" id="Address"/></label><br />
+				<label>
+					Страна фирмы
+					<select name="Country" id="CountryId">
+				<option hidden selected disabled>Выберите страну</option>
+				@foreach (var item in Model.Countries)
+				{
+							<option value="@item.Id">@item.Name</option>
+						}
+			</select></label><br />
+			<label>Телефон<input type="tel" pattern="\+[0-9]{11}" name="Phone" placeholder="+78005553535" id="Phone"/></label><br />
+			<label>ФИО директора фирмы<input name="Director" maxlength="80" id="Director"/></label><br />
+			<label>Вид деятельности фирмы<input name="Activity" maxlength="30" id="Activity"/></label><br />
+			<div class="button-container">
+				<button onclick="DeleteItem1()">Добавить фирму</button>
+				<input type="button" onclick="SaveForm(); window.location.href='Add';" value="Назад" />
+			</div>
 		</form>
 		@if (Model.Message.Count != 0)
 		{
@@ -74,6 +83,15 @@
 			sessionStorage.setItem("Director", Director);
 			let Activity = document.getElementById("Activity").value;
 			sessionStorage.setItem("Activity", Activity);
+		}
+
+		function DeleteItem1() {
+			sessionStorage.removeItem("NameMan");
+			sessionStorage.removeItem("Address");
+			sessionStorage.removeItem("CountryId");
+			sessionStorage.removeItem("Phone");
+			sessionStorage.removeItem("Director");
+			sessionStorage.removeItem("Activity");
 		}
 	</script>
 </body>

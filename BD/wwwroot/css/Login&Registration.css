@@ -1,0 +1,63 @@
+﻿
+
+.form-cont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.form-container {
+    background-color: white; /* Фон формы */
+    padding: 30px; /* Отступы внутри формы */
+    border-radius: 8px; /* Сглаживание углов */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Тень */
+    max-width: 400px; /* Максимальная ширина формы */
+    width: 100%; /* Ширина формы */
+}
+
+h1 {
+    text-align: center; /* Центрирование заголовка */
+    margin-bottom: 20px; /* Отступ снизу */
+}
+
+.registration-form label, 
+.login-form label {
+    margin-top: 10px; /* Отступ сверху для меток */
+    font-weight: bold; /* Полужирный текст */
+}
+
+.registration-form input,
+.login-form input {
+    width: 100%; /* Ширина 100% */
+    padding: 10px; /* Внутренние отступы */
+    margin-top: 5px; /* Отступ сверху */
+    margin-bottom: 15px; /* Отступ снизу */
+    border: 1px solid #ccc; /* Цвет рамки */
+    border-radius: 4px; /* Сглаживание углов */
+    box-sizing: border-box; /* Учет границ и отступов в ширине */
+    justify-content: center;
+}
+
+.submit {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+    .submit:hover {
+        background-color: #0056b3; /*Цвет при наведении*/
+    }
+
+.redirect-link {
+    text-align: center;  /*Центрирование ссылки */
+    margin-top: 10px;  /*Отступ сверху */
+}
+
+.error-message {
+    color: red;  /*Цвет сообщения об ошибке */
+    margin-bottom: 15px;  /*Отступ снизу */
+}

@@ -6,75 +6,92 @@
 	Layout = "Shared/_Layout.cshtml";
 }
 
+@section Styles {
+    <link rel="stylesheet" href="~/css/SearchOne&Two.css">
+}
+
 <body>
-	<div class="Search" style="display: flex; flex-direction: column; gap: 0.5rem; width: 120%;">
-		<label>
-			Изготовитель:
-		</label>
-		<form id="First" method="post" asp-page-handler="First">
-			<select onchange="document.getElementById('First').submit(); SaveForm();" required name="ManufacturerId" id="Manufacturer">
-				<option selected hidden disabled>Выберите производителя</option>
-				@foreach (var item in Model.Manufacturers)
-				{
-					<option value="@item.Id">@item.Name</option>
-				}
-			</select>
-		</form>
+    <div class="search-page">
+        
+        <form id="First" method="post" asp-page-handler="First">
+            <div class="search-form">
+                <label>Изготовитель:</label>
+                <select onchange="document.getElementById('First').submit(); SaveForm();" required name="ManufacturerId" id="Manufacturer">
+                    <option selected hidden disabled>Выберите производителя</option>
+                    @foreach (var item in Model.Manufacturers)
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                </select>
+            </div>
+        </form>
+        
+        <form id="Second" method="post" asp-page-handler="Second">
+            <input type="hidden" name="NameId" value="@Model.ManId" id="DetailId" />
+            <div class="search-form">
+                <label>Название детали:</label>
+                <select onchange="SaveForm(); " required name="Name" id="Detail">
+                    @foreach (var item in Model.Names)
+                    {
+                        <option value="@item">@item</option>
+                    }
+                </select>
+                <button onclick="SaveForm();">Поиск</button>
 
-		<form method="post" asp-page-handler="Second">
-			<input type="hidden" name="NameId" value="@Model.ManId" id="DetailId" />
-			<label>Название детали:</label><br />
+            </div>
+        </form>
+            
+        
 
-			<select required name="Name" style="width: 180px" id="Detail">
-				@foreach (var item in Model.Names)
-				{
-					<option value="@item">@item</option>
-				}
-			</select><br />
-			<button onclick="DeleteItem()" style="width:70px">Поиск</button>
-		</form>
-	</div>
-
-	<table>
-		@if (Model.DetailSearch.Count != 0)
-		{
-			<tr>
-				<th>Название</th>
-				<th>Цена, руб.</th>
-				<th>Страна изготовления</th>
-				<th>Тип</th><th>Модель</th>
-				<th>Рабочее напряжение, В</th>
-				<th>Мин. раб. темп., С</th>
-				<th>Макс. раб. темп., С</th>
-				<th>Ёмкость, нФ</th><th>Мощность, Вт</th>
-				<th>Сопротивление, Ом</th>
-				<th>Сила тока, А</th>
-				<th>Индуктивность, мГн</th>
-				<th>Материал</th>
-				<th>Производитель</th>
-			</tr>
-		}
-		@foreach (var item in Model.DetailSearch)
-		{
-			<tr>
-				<td>@item.Name</td>
-				<td>@item.Price</td>
-				<td>@item.Country.Name</td>
-				<td>@item.Part_type.Name</td>
-				<td>@item.Model</td>
-				<td>@item.Operating_voltage</td>
-				<td>@item.MinOperating_Temp</td>
-				<td>@item.MaxOperating_Temp</td>
-				<td>@item.Capacity</td>
-				<td>@item.Power</td>
-				<td>@item.Resistance</td>
-				<td>@item.Electric_current</td>
-				<td>@item.Inductance</td>
-				<td>@item.Material.Name</td>
-				<td>@item.Manufacturer.Name</td>
-			</tr>
-		}
-	</table>
+        <div class="search-results">
+            @if (Model.DetailSearch.Count != 0)
+            {
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Название</th>
+                            <th>Цена, руб.</th>
+                            <th>Страна изготовления</th>
+                            <th>Тип</th>
+                            <th>Модель</th>
+                            <th>Рабочее напряжение, В</th>
+                            <th>Мин. раб. темп., С</th>
+                            <th>Макс. раб. темп., С</th>
+                            <th>Ёмкость, нФ</th>
+                            <th>Мощность, Вт</th>
+                            <th>Сопротивление, Ом</th>
+                            <th>Сила тока, А</th>
+                            <th>Индуктивность, мГн</th>
+                            <th>Материал</th>
+                            <th>Производитель</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.DetailSearch)
+                        {
+                            <tr>
+                                <td>@item.Name</td>
+                                <td>@item.Price</td>
+                                <td>@item.Country.Name</td>
+                                <td>@item.Part_type.Name</td>
+                                <td>@item.Model</td>
+                                <td>@item.Operating_voltage</td>
+                                <td>@item.MinOperating_Temp</td>
+                                <td>@item.MaxOperating_Temp</td>
+                                <td>@item.Capacity</td>
+                                <td>@item.Power</td>
+                                <td>@item.Resistance</td>
+                                <td>@item.Electric_current</td>
+                                <td>@item.Inductance</td>
+                                <td>@item.Material.Name</td>
+                                <td>@item.Manufacturer.Name</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        </div>
+    </div>
 
 	<script>
 		if (sessionStorage.getItem("Manufacturer") !== null) {

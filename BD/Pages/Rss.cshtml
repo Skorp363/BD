@@ -1,0 +1,96 @@
+﻿@page
+@model BD.Pages.RssModel;
+@{
+    ViewBag.Title = "RSS-новости";
+    Layout = "Shared/_Layout.cshtml";
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+
+
+@section Styles{
+    <link rel="stylesheet" href="css/RSS.css">
+}
+<div class="rss-form">
+    
+
+        @if (User.Identity != null && User.Identity.IsAuthenticated)
+        {
+            <section id="addRSS">
+                @if (TempData["ErrorMessage"] != null)
+                {
+                    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+                }
+                @if (TempData["Message"] != null)
+                {
+                    <div class="alert alert-success">@TempData["Message"]</div>
+                }
+
+                <h2>Добавить новость</h2>
+                <form method="post" asp-route-handler="AddUserNews">
+                    <label for="title">Заголовок:</label>
+                    <input type="text" id="title" name="Title" required placeholder="Событие">
+
+                    <label for="description">Описание:</label>
+                    <textarea id="description" name="Description" required placeholder="Описание события"></textarea>
+
+                    <label for="nick">Ваше Имя:</label>
+                    <input type="text" id="nick" name="Author" required placeholder="Иванов Иван">
+
+                    <input type="submit" value="Добавить новость">
+                </form>
+            </section>
+
+            <section id="addRSS">
+                <h2>Добавить RSS-ленту</h2>
+                <form method="post" asp-route-handler="AddRssFeed">
+                    <label for="rssLink">Ссылка на RSS-ленту:</label>
+                    <input type="url" id="rssLink" name="RssLink" required placeholder="https://example.com/rss">
+
+                    <input type="submit" onclick="SaveForm();" value="Добавить RSS-ленту">
+                </form>
+            </section>
+        }
+
+        <section id="newsRSS">
+            <h2>Последние обновления</h2>
+            <p>Количество обновлений: @(Model.FeedItems?.Count ?? 0)</p>
+
+            @if (Model.FeedItems != null && Model.FeedItems.Any())
+            {
+                <section class="news-list">
+                    @foreach (var item in Model.FeedItems)
+                    {
+                        <article class="news-item">
+                            @if (!string.IsNullOrEmpty(item.Link))
+                            {
+                                <h3><a href="@item.Link">@item.Title</a></h3>
+                            }
+                            else
+                            {
+                                <h3>@item.Title</h3>
+                            }
+                            <p>@Html.Raw(item.Description)</p>
+                            <small>Опубликовано: @item.PubDate.ToString("R")</small>
+                        </article>
+                    }
+                </section>
+            }
+            else
+            {
+                <p>Нет доступных обновлений.</p>
+            }
+        </section>
+</div>
+
+<script>
+    if (sessionStorage.getItem("rssLink") !== null) { 
+        document.getElementById("rssLink").value = sessionStorage.getItem("rssLink");
+    }
+
+    function SaveForm() { 
+        let Link = document.getElementById("rssLink").value;
+        sessionStorage.setItem("rssLink", Link);
+    }
+</script>
+

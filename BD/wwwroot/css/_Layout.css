@@ -61,6 +61,21 @@
         background-color: #3e8e41;
     }
 
+
+#logOut {
+    background-color: #4CAF50; /* Цвет фона, совпадающий с цветом кнопок */
+    color: white; /* Цвет текста */
+    border: solid; /* Без границы */
+    border-color: #333;
+    padding: 10px 20px; /* Паддинг аналогичный кнопкам */
+    border-radius: 0px; /* Сглаживание углов */
+    cursor: pointer; /* Курсор при наведении */
+    transition: background-color 0.3s; /* Плавный переход фона */
+}
+
+    #logOut:hover {
+        background-color: #45a049; /* Цвет при наведении */
+    }
 /* Заголовки */
 h1, h2 {
     margin: 0;

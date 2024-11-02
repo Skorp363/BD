@@ -5,10 +5,16 @@
 	ViewBag.Title = "Добавление детали";
 	Layout = "Shared/_Layout.cshtml";
 }
+
+@section Styles {
+	<link rel="stylesheet" href="~/css/Add.css">
+	
+}
+
 <body>
-	<div>
+	<div class="add-page">
 		<form method="post">
-			<label>Название(Обязательно)<input required name="Name" id="prop1" /></label><br />
+			<label>Название(Обязательно)<input required name="Name" maxlength="50" id="prop1" /></label><br />
 			<label>Цена<input type="number" name="Price" id="prop2" /></label><br />
 			<label>Тип детали</label>
 			<select required style="width: 150px" name="Part_typeId" id="prop3">
@@ -22,7 +28,7 @@
 
 			</select>
 			<br />
-			<label>Модель детали<input name="Model" id="prop4" /></label><br />
+			<label>Модель детали<input name="Model" maxlength="20" id="prop4" /></label><br />
 			<label>Рабочее напряжение, В<input type="number" name="Operating_voltage" id="prop5" /></label><br />
 			<label>Минимальная раб. темп., С<input type="number" name="MinOperating_Temp" id="prop6" /></label><br />
 			<label>Максимальная раб. темп., С<input type="number" name="MaxOperating_Temp" id="prop7" /></label>

@@ -10,10 +10,14 @@ namespace BD.Models
 		public DbSet<Type> Types { get; set; } = null!;
 		public DbSet<Country> Countries { get; set; }
 		public DbSet<User> Users { get; set; } = null!;
+		public DbSet<RssItem> RssItems { get; set; } = null!;
+
+		public DbSet<RssLink> RssLinks { get; set; }
+
 		public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
 		{
 			
-		}
+        }
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 			modelBuilder.Entity<Country>().HasData(
@@ -107,6 +111,8 @@ namespace BD.Models
 				new Details { Id = 50, Name = "Резистор углеродистый", Price = 9, CountryId = 1, Part_typeId = 2, Model = "CF-50", Operating_voltage = 350, MinOperating_Temp = -55, MaxOperating_Temp = 155, Power = 0.5, Resistance = 510, ManufacturerId = 1, MaterialId = 2 }
 
 				);
+			modelBuilder.Entity<RssItem>().HasNoKey();
+			
 		}
 	}
 }

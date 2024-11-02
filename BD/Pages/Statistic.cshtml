@@ -1,44 +1,52 @@
 ﻿@page
 @model BD.Pages.StatisticModel
 @{
-	ViewBag.Title = "Статистика";
-	Layout = "Shared/_Layout.cshtml";
+    ViewBag.Title = "Статистика";
+    Layout = "Shared/_Layout.cshtml";
 }
-<body>
-	<form method="get">
-		<table>
-			<tr>
-				<th>Аспект</th>
-				<th>Категория</th>
-				<th>Количество</th>
-			</tr>
+@section Styles {
+    <link rel="stylesheet" href="~/css/Statistics.css">
+}
 
-			@foreach(var item in Model.Materials)
-			{
-				<tr>
-					<td>Материал</td>
-					<td>@item.Name</td>
-					<td>@Model.Details.Count(d => d.Material.Name == item.Name)</td>
-				</tr>
-			}
+<body class="statistic-page">
+    <div class="table-container">
+        <table class="statistic">
+            <tr>
+                <th colspan="2">По материалу</th>
+            </tr>
+            @foreach (var item in Model.Materials)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@Model.Details.Count(d => d.Material.Name == item.Name)</td>
+                </tr>
+            }
+        </table>
 
-			@foreach (var item in Model.Types)
-			{
-				<tr>
-					<td>Тип</td>
-					<td>@item.Name</td>
-					<td>@Model.Details.Count(d => d.Part_type.Name == item.Name)</td>
-				</tr>
-			}
+        <table class="statistic">
+            <tr>
+                <th colspan="2">По типу</th>
+            </tr>
+            @foreach (var item in Model.Types)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@Model.Details.Count(d => d.Part_type.Name == item.Name)</td>
+                </tr>
+            }
+        </table>
 
-			@foreach (var item in Model.Manufacturers)
-			{
-				<tr>
-					<td>Производитель</td>
-					<td>@item.Name</td>
-					<td>@Model.Details.Count(d => d.Manufacturer.Name == item.Name)</td>
-				</tr>
-			}
-		</table>
-	</form>
+        <table class="statistic">
+            <tr>
+                <th colspan="2">По производителю</th>
+            </tr>
+            @foreach (var item in Model.Manufacturers)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@Model.Details.Count(d => d.Manufacturer.Name == item.Name)</td>
+                </tr>
+            }
+        </table>
+    </div>
 </body>

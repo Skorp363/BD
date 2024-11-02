@@ -1,4 +1,4 @@
-using BD.Models;
+п»їusing BD.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
@@ -11,11 +11,11 @@ internal class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
-        // Настройки подключения к базе данных
+        // РќР°СЃС‚СЂРѕР№РєРё РїРѕРґРєР»СЋС‡РµРЅРёСЏ Рє Р±Р°Р·Рµ РґР°РЅРЅС‹С…
         string? connection = builder.Configuration.GetConnectionString("DefaultConnection1");
         if (connection == null)
         {
-            throw new InvalidOperationException("Строка подключения 'DefaultConnection1' не найдена.");
+            throw new InvalidOperationException("РЎС‚СЂРѕРєР° РїРѕРґРєР»СЋС‡РµРЅРёСЏ 'DefaultConnection1' РЅРµ РЅР°Р№РґРµРЅР°.");
         }
         builder.Services.AddDbContext<ApplicationContext>(options => options.UseNpgsql(connection));
         builder.Services.AddRazorPages();
@@ -39,67 +39,67 @@ internal class Program
 
         app.MapRazorPages();
 
-        // Регистрация
+        // Р РµРіРёСЃС‚СЂР°С†РёСЏ
         app.MapPost("/register", async (User user, ApplicationContext context) =>
         {
             var errors = new List<string>();
 
-            // Проверка имени пользователя
+            // РџСЂРѕРІРµСЂРєР° РёРјРµРЅРё РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
             if (string.IsNullOrWhiteSpace(user.Username))
             {
-                errors.Add("Введите имя пользователя");
+                errors.Add("Р’РІРµРґРёС‚Рµ РёРјСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ");
             }
             else
             {
                 if (user.Username.Contains(" "))
                 {
-                    errors.Add("Имя пользователя не должно содержать пробелов");
+                    errors.Add("РРјСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РЅРµ РґРѕР»Р¶РЅРѕ СЃРѕРґРµСЂР¶Р°С‚СЊ РїСЂРѕР±РµР»РѕРІ");
                 }
                 if (!Regex.IsMatch(user.Username, @"^[a-zA-Z0-9]+$"))
                 {
-                    errors.Add("Имя пользователя должно содержать только буквы и цифры");
+                    errors.Add("РРјСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РґРѕР»Р¶РЅРѕ СЃРѕРґРµСЂР¶Р°С‚СЊ С‚РѕР»СЊРєРѕ Р±СѓРєРІС‹ Рё С†РёС„СЂС‹");
                 }
                 if (user.Username.Length < 3)
                 {
-                    errors.Add("Имя пользователя должно содержать не менее 3 символов");
+                    errors.Add("РРјСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РґРѕР»Р¶РЅРѕ СЃРѕРґРµСЂР¶Р°С‚СЊ РЅРµ РјРµРЅРµРµ 3 СЃРёРјРІРѕР»РѕРІ");
                 }
             }
 
-            // Проверка на существование пользователя
+            // РџСЂРѕРІРµСЂРєР° РЅР° СЃСѓС‰РµСЃС‚РІРѕРІР°РЅРёРµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
             if (await context.Users.AnyAsync(u => u.Username == user.Username))
             {
-                errors.Add("Пользователь с таким именем уже зарегистрирован.");
+                errors.Add("РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ СЃ С‚Р°РєРёРј РёРјРµРЅРµРј СѓР¶Рµ Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°РЅ.");
             }
 
-            // Проверка пароля
+            // РџСЂРѕРІРµСЂРєР° РїР°СЂРѕР»СЏ
             if (string.IsNullOrWhiteSpace(user.PasswordHash))
             {
-                errors.Add("Введите пароль");
+                errors.Add("Р’РІРµРґРёС‚Рµ РїР°СЂРѕР»СЊ");
             }
             else
             {
                 if (user.PasswordHash.Length < 8)
                 {
-                    errors.Add("Пароль должен содержать не менее 8 символов");
+                    errors.Add("РџР°СЂРѕР»СЊ РґРѕР»Р¶РµРЅ СЃРѕРґРµСЂР¶Р°С‚СЊ РЅРµ РјРµРЅРµРµ 8 СЃРёРјРІРѕР»РѕРІ");
                 }
                 if (!user.PasswordHash.Any(char.IsDigit))
                 {
-                    errors.Add("Пароль должен содержать хотя бы одну цифру");
+                    errors.Add("РџР°СЂРѕР»СЊ РґРѕР»Р¶РµРЅ СЃРѕРґРµСЂР¶Р°С‚СЊ С…РѕС‚СЏ Р±С‹ РѕРґРЅСѓ С†РёС„СЂСѓ");
                 }
                 if (!user.PasswordHash.Any(char.IsLetter))
                 {
-                    errors.Add("Пароль должен содержать хотя бы одну букву");
+                    errors.Add("РџР°СЂРѕР»СЊ РґРѕР»Р¶РµРЅ СЃРѕРґРµСЂР¶Р°С‚СЊ С…РѕС‚СЏ Р±С‹ РѕРґРЅСѓ Р±СѓРєРІСѓ");
                 }
                 if (!user.PasswordHash.Any(ch => !char.IsLetterOrDigit(ch)))
                 {
-                    errors.Add("Пароль должен содержать хотя бы один спецсимвол");
+                    errors.Add("РџР°СЂРѕР»СЊ РґРѕР»Р¶РµРЅ СЃРѕРґРµСЂР¶Р°С‚СЊ С…РѕС‚СЏ Р±С‹ РѕРґРёРЅ СЃРїРµС†СЃРёРјРІРѕР»");
                 }
             }
 
-            // Проверка совпадения паролей
+            // РџСЂРѕРІРµСЂРєР° СЃРѕРІРїР°РґРµРЅРёСЏ РїР°СЂРѕР»РµР№
             if (string.IsNullOrWhiteSpace(user.ConfirmPassword) || user.PasswordHash != user.ConfirmPassword)
             {
-                errors.Add("Пароли не совпадают!");
+                errors.Add("РџР°СЂРѕР»Рё РЅРµ СЃРѕРІРїР°РґР°СЋС‚!");
             }
 
             if (errors.Count > 0)
@@ -116,28 +116,28 @@ internal class Program
             }
             catch (Exception ex)
             {
-                return Results.Json(new { errors = new List<string> { "Ошибка сервера: " + ex.Message } }, statusCode: 500);
+                return Results.Json(new { errors = new List<string> { "РћС€РёР±РєР° СЃРµСЂРІРµСЂР°: " + ex.Message } }, statusCode: 500);
             }
 
             return Results.Redirect("/login");
         });
 
-        // Вход
+        // Р’С…РѕРґ
         app.MapPost("/login", async (User loginUser, ApplicationContext context, HttpContext httpContext) =>
         {
             var errors = new List<string>();
 
             try
             {
-                // Проверка на пустые поля
+                // РџСЂРѕРІРµСЂРєР° РЅР° РїСѓСЃС‚С‹Рµ РїРѕР»СЏ
                 if (string.IsNullOrWhiteSpace(loginUser.Username))
                 {
-                    errors.Add("Введите имя пользователя");
+                    errors.Add("Р’РІРµРґРёС‚Рµ РёРјСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ");
                 }
 
                 if (string.IsNullOrWhiteSpace(loginUser.PasswordHash))
                 {
-                    errors.Add("Введите пароль");
+                    errors.Add("Р’РІРµРґРёС‚Рµ РїР°СЂРѕР»СЊ");
                 }
 
                 if (errors.Count > 0)
@@ -145,13 +145,13 @@ internal class Program
                     return Results.BadRequest(new { errors });
                 }
 
-                // Поиск пользователя в базе данных
+                // РџРѕРёСЃРє РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РІ Р±Р°Р·Рµ РґР°РЅРЅС‹С…
                 var user = await context.Users.FirstOrDefaultAsync(u => u.Username == loginUser.Username);
 
-                // Проверка правильности пароля
+                // РџСЂРѕРІРµСЂРєР° РїСЂР°РІРёР»СЊРЅРѕСЃС‚Рё РїР°СЂРѕР»СЏ
                 if (user == null || !user.VerifyPassword(loginUser.PasswordHash))
                 {
-                    errors.Add("Неверное имя пользователя или пароль");
+                    errors.Add("РќРµРІРµСЂРЅРѕРµ РёРјСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РёР»Рё РїР°СЂРѕР»СЊ");
                     return Results.BadRequest(new { errors });
                 }
 
@@ -164,7 +164,7 @@ internal class Program
             }
             catch (Exception ex)
             {
-                return Results.Json(new { errors = new List<string> { "Ошибка сервера: " + ex.Message } }, statusCode: 500);
+                return Results.Json(new { errors = new List<string> { "РћС€РёР±РєР° СЃРµСЂРІРµСЂР°: " + ex.Message } }, statusCode: 500);
             }
         });
 

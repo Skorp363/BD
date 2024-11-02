@@ -7,135 +7,9 @@
     <meta name="viewport" content="width=device-width">
     <title>@ViewBag.Title</title>
 
-    @* <link rel="stylesheet" href="BD.styles.css"> *@
+    <link rel="stylesheet" href="~/css/_Layout.css">
 
-    <style>
-        header {
-            background-color: #333;
-            padding: 15px;
-            color: white;
-            text-align: center;
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-        }
-
-            .navbar button, .navbar .dropbtn {
-                background-color: #4CAF50;
-                color: white;
-                border: none;
-                padding: 10px 20px;
-                text-align: center;
-                cursor: pointer;
-                font-size: 16px;
-                border-radius: 5px;
-                transition: background-color 0.3s;
-            }
-
-                .navbar button:hover, .navbar .dropbtn:hover {
-                    background-color: #45a049;
-                }
-
-            .navbar .dropdown {
-                position: relative;
-                display: inline-block;
-            }
-
-            .navbar .dropdown-content {
-                display: none;
-                position: absolute;
-                background-color: #f9f9f9;
-                min-width: 160px;
-                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-                z-index: 1;
-            }
-
-                .navbar .dropdown-content a {
-                    color: black;
-                    padding: 12px 16px;
-                    text-decoration: none;
-                    display: block;
-                    text-align: left;
-                }
-
-                    .navbar .dropdown-content a:hover {
-                        background-color: #ddd;
-                    }
-
-            .navbar .dropdown:hover .dropdown-content {
-                display: block;
-            }
-
-            .navbar .dropdown:hover .dropbtn {
-                background-color: #3e8e41;
-            }
-
-        /* Заголовки */
-        h1, h2 {
-            margin: 0;
-            padding: 10px 0;
-        }
-
-        h1 {
-            font-size: 36px;
-        }
-
-        h2 {
-            font-size: 24px;
-        }
-
-        main {
-            flex-grow: 1;
-            overflow-y: scroll;
-        }
-
-        /* Основные стили для футера */
-        footer {
-            background-color: #f8f9fa;
-            padding: 20px;
-            position: relative;
-            width: 100%;
-            bottom: 0;
-            font-size: 14px;
-            color: #333;
-            box-shadow: 0 -1px 5px rgba(0,0,0,0.1);
-            box-sizing: border-box;
-        }
-
-        /* Стили для контента футера */
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            width: 100%;
-            margin: 0 auto;
-        }
-
-        .footer-left {
-            flex: 1;
-        }
-
-        .footer-right {
-            flex: 0;
-        }
-
-
-
-        /* Стили для ссылок и текста */
-        footer a {
-            color: #007bff;
-            text-decoration: none;
-        }
-
-            footer a:hover {
-                text-decoration: underline;
-            }
-    </style>
-    @* <link rel="stylesheet" href="css/_Layout.css"> *@
+    
     @RenderSection("Styles", required: false)
 </head>
 <body style="display: flex;
@@ -177,11 +51,12 @@
             <!-- Сервисы -->
             <button onclick="window.location.href='Services'; SaveForm(); DeleteItem()">Сервисы</button>
             <button onclick="window.location.href='XML'; SaveForm(); DeleteItem()">XML</button>
+            <button onclick="window.location.href='Rss'; SaveForm(); DeleteItem()">RSS</button>
 
             <!-- Вход / Регистрация -->
             <button onclick="window.location.href='Login'" class="ReistrationLogin-Button" id="ReistrationLoginButton">Вход / Регистрация</button>
             <div id="userInfo" style="display:none;">
-                <p>Добро пожаловать <span id="userName"></span>!</p>
+                <p style="align-content: center; margin: 0">Добро пожаловать <span id="userName"></span>!</p>
                 <input type="button" value="Выйти" id="logOut" />
             </div>
         </nav>
@@ -252,6 +127,7 @@
                     document.getElementById("userName").innerText = userData.username;
                     document.getElementById("userInfo").style.display = "flex";
                     document.getElementById("userInfo").style.border = "2px solid green";
+                    document.getElementById("userInfo").style.height = "35.2px";
                     document.getElementById("ReistrationLoginButton").style.display = "none";
                     document.getElementById("add").style.background = "";
                 } else {

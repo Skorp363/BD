@@ -5,13 +5,8 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>7bc520b3-f00d-4886-8fcb-224b994eb3ac</UserSecretsId>
+    <StartupObject>Program</StartupObject>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Content Remove="wwwroot\css\Index.css" />
-    <Content Remove="wwwroot\css\Services.css" />
-    <Content Remove="wwwroot\css\_Layout.css" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.4">
@@ -28,10 +23,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\css\Index.css" />
-    <None Include="wwwroot\css\Services.css" />
-    <None Include="wwwroot\css\_Layout.css" />
     <None Include="wwwroot\xsl\transform.xsl" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Program.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
   </ItemGroup>
 
 </Project>

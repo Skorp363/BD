@@ -14,6 +14,8 @@ namespace BD.Pages
 
 		public List<Details> DetailSearch { get; set; } = new();
 
+		public List<Details> AllDetailSearch { get; set; } = new();
+
 		//public List<Country> Countries { get; set; } = new();
 		public List<Manufacturer> Manufacturers { get; set; } = new();
 
@@ -53,14 +55,14 @@ namespace BD.Pages
 			Manufacturers = Details.Select(x => x.Manufacturer).Distinct().OrderBy(m => m.Name).ToList();
 
 
-			DetailSearch = Details.FindAll(d => d.ManufacturerId == ManufacturerId);
+			DetailSearch = Details.FindAll(d => d.ManufacturerId == ManufacturerId).OrderBy(m => m.Name).ToList();
 
 			Names = DetailSearch.Select(x => x.Name).Distinct().ToList();
 		}
 
 		public async Task OnPostSecond(int NameId, string Name)
 		{
-
+			ManId = NameId;
 
 			Details = await context.Details
 			   .Include(x => x.Country)
@@ -71,9 +73,11 @@ namespace BD.Pages
 			//Countries = Details.Select(x => x.Country).Distinct().OrderBy(c => c.Name).ToList();
 			Manufacturers = Details.Select(x => x.Manufacturer).Distinct().OrderBy(m => m.Name).ToList();
 
+			AllDetailSearch = Details.FindAll(d => d.ManufacturerId == NameId).OrderBy(m => m.Name).ToList();
+
 			DetailSearch = Details.FindAll(d => (d.Name == Name) && (d.ManufacturerId == NameId));
 
-			//Names = DetailSearch.Select(x => x.Name).Distinct().ToList();
+			Names = AllDetailSearch.Select(x => x.Name).Distinct().ToList();
 
 		}
 	}

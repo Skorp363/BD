@@ -4,27 +4,39 @@
 	ViewBag.Title = "Добавление материала";
 	Layout = "Shared/_Layout.cshtml";
 }
-<body>
-	<form method="post">
-		<label>Материал<input required name="Name" id="NameMat"/></label><br/>
-		<button type="submit">Добавить материал</button>
-		@if (Model.Message.Count != 0)
-		{
-			<p>@Model.Message[0]</p>
-		}
-	</form>
+
+@section Styles {
+	<link rel="stylesheet" href="~/css/Add.css">
 	
-<!--	<table>
-		<tr><th>ИД</th><th>Материал</th></tr>
+}
+
+<body>
+	<div class="add-page">
+		<form method="post">
+			<label>Материал<input required name="Name" maxlength="20" id="NameMat"/></label><br/>
+			<div class="button-container">
+				<button type="submit" onclick="DeleteItem1()">Добавить материал</button>
+				<input type="button" onclick="SaveForm(); window.location.href = 'Add'" value="Назад" />
+			</div>
+
+			@if (Model.Message.Count != 0)
+			{
+				<p>@Model.Message[0]</p>
+			}
+		</form>
+	
+			<!--	<table>
+			<tr><th>ИД</th><th>Материал</th></tr>
 		
-		@foreach (var Material in Model.Materials)
-		{
-				<tr>
-					<td>@Material.Id</td>
-					<td>@Material.Name</td>
-				</tr>
-		}
-		</table>-->
+			@foreach (var Material in Model.Materials)
+			{
+					<tr>
+						<td>@Material.Id</td>
+						<td>@Material.Name</td>
+					</tr>
+			}
+			</table>-->
+	</div>
 
 	<script>
 		if (sessionStorage.getItem("NameMat") !== null) {
@@ -33,6 +45,10 @@
 		function SaveForm() {
 			let Name = document.getElementById("NameMat").value;
 			sessionStorage.setItem("NameMat", Name);
+		}
+
+		function DeleteItem1() {
+			sessionStorage.removeItem("NameMat");
 		}
 	</script>
 	

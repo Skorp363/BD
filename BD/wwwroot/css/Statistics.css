@@ -1,0 +1,57 @@
+﻿/* Стили для страницы статистики */
+.table-container {
+    display: flex;
+    justify-content: space-between; /* Размещает таблицы равномерно */
+    gap: 10px; /* Отступы между таблицами */
+    max-width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.statistic {
+    flex: 1; /* Каждая таблица занимает равную ширину */
+    width: 100%; /* Полная ширина контейнера таблицы */
+    max-width: 33%; /* Ограничение на одну треть контейнера */
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+    background-color: white;
+    height: max-content;
+}
+
+    .statistic th, .statistic td {
+        padding: 10px; /* Отступы в ячейках */
+        border: 1px solid #ddd; /* Границы ячеек */
+        text-align: left;
+        vertical-align: middle;
+    }
+
+th {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #e0e0e0;
+}
+
+/* Для мобильных устройств */
+@media (max-width: 768px) {
+    .statistic-page {
+        flex-direction: column; /* Размещает таблицы вертикально на маленьких экранах */
+        gap: 15px;
+    }
+
+    .statistic {
+        max-width: 100%; /* Полная ширина на мобильных */
+    }
+
+    th, td {
+        font-size: 14px;
+    }
+}

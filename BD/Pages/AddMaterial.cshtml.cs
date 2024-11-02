@@ -29,17 +29,23 @@ namespace BD.Pages
 		{
 			Materials = context.Materials.AsNoTracking().ToList();
 			var material = Materials.Find(m=>m.Name == Name);
+			Message.Clear();
 			if (material == null)
 			{
+				Message.Add("Material added!");
 				context.Materials.Add(Material);
 				await context.SaveChangesAsync();
-				return RedirectToPage();
+				
+				return Page();
 			}
 			else
 			{
+				
 				Message.Add("The material is already in the database!");
 				return Page();
+				
 			}
+			
 		}
 
 

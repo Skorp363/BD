@@ -1,14 +1,18 @@
-@page
+﻿@page
 @model BD.Pages.LoginModel
 @{
     ViewBag.Title = "Вход";
     Layout = "Shared/_Layout.cshtml";
 }
+@section Styles {
+    <link rel="stylesheet" href="~/css/Login&Registration.css">
+}
 
 <body>
+    <div class="form-cont">
     <section class="form-container">
-        <img src="pictures/BackgroundBlack.jpg" class="img-Background">
-        <h1>Вход</h1>
+
+            <h1>Вход</h1>
         <form method="post" action="/login" class="login-form" id="loginForm">
             <div class="error-message"></div>
 
@@ -18,9 +22,10 @@
             <label>Пароль</label>
             <input type="password" id="password" name="PasswordHash">
 
-            <button type="submit" id="submitLogin">Войти</button>
-            <div>Нет аккаунта? <a href="Registration">Зарегистрироваться</a></div>
+            <button type="submit" id="submitLogin" class="submit">Войти</button>
+            <div class="redirect-link">Нет аккаунта? <a href="Registration">Зарегистрироваться</a></div>
         </form>
     </section>
+    </div>
     <script src="/js/OptionLogin.js"></script>
 </body>

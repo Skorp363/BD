@@ -1,0 +1,83 @@
+﻿/* Стили для страницы добавления данных */
+.add-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 15px; /* уменьшили отступы */
+    font-family: Arial, sans-serif;
+}
+
+    .add-page h1 {
+        color: #007bff;
+        font-size: 1.8em; /* уменьшили размер заголовка */
+        margin-bottom: 15px; /* уменьшили отступ снизу */
+    }
+
+    .add-page label {
+        display: block;
+        margin-bottom: 5px; /* уменьшили отступы между полями */
+        font-weight: bold;
+        color: #333;
+    }
+
+    .add-page input, .add-page select {
+        width: 100%;
+        padding: 6px; /* уменьшили padding */
+        margin-bottom: 10px; /* уменьшили отступы между полями */
+        border-radius: 4px; /* чуть уменьшили радиус */
+        border: 1px solid #ccc;
+        font-size: 14px;
+        box-sizing: border-box;
+    }
+
+        .add-page button, .add-page input[type="button"] {
+            background-color: #007bff;
+            color: white;
+            padding: 8px 15px;  /*уменьшили размер кнопок */
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px; /* уменьшили шрифт кнопок*/ 
+            margin-top: 8px;  /*уменьшили отступы сверху */
+            transition: background-color 0.3s;
+        }
+
+            .add-page button:hover, .add-page input[type="button"]:hover {
+                background-color: #0056b3;
+            }
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+    .button-container button,
+    .button-container input[type="button"] {
+        background-color: #007bff;
+        color: white;
+        padding: 8px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: background-color 0.3s;
+        width: 20%; /* ширина каждой кнопки */
+    }
+
+        .button-container button:hover,
+        .button-container input[type="button"]:hover {
+            background-color: #0056b3;
+        }
+            /* Сообщение об ошибке или успехе */
+        .add-page p {
+        color: red;
+        font-size: 14px;
+        margin-top: 15px;
+    }
+
+/* Адаптивные стили для мобильных устройств */
+@media (max-width: 768px) {
+    .add-page input, .add-page select {
+        width: 100%;
+    }
+}

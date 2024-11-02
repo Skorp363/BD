@@ -30,11 +30,13 @@ namespace BD.Pages
 			Manufacturers = await context.Manufacturers.AsNoTracking().ToListAsync();
 			Countries = await context.Countries.OrderBy(c => c.Name).ToListAsync();
 			var manufacturer = Manufacturers.FindAll(m=>m.Name == Name);
+			Message.Clear();
 			if (manufacturer.Count == 0)
 			{
+				Message.Add("Manufacturer added!");
 				context.Manufacturers.Add(Manufacturer);
 				await context.SaveChangesAsync();
-				return RedirectToPage();
+				return Page();
 			}
 			else
 			{

@@ -13,14 +13,14 @@ namespace BD.Models
 		public int Part_typeId { get; set; }
 		public Type Part_type { get; set; } = null!;
 		public string? Model { get; set; }
-		public double Operating_voltage { get; set; }
-		public int MinOperating_Temp { get; set; }
-		public int MaxOperating_Temp { get; set; }
-		public double Capacity { get; set; }
-		public double Power { get; set; }
-		public double Resistance { get; set; }
-		public double Electric_current { get; set; }
-		public double Inductance { get; set; }
+		public double? Operating_voltage { get; set; }
+		public int? MinOperating_Temp { get; set; }
+		public int? MaxOperating_Temp { get; set; }
+		public double? Capacity { get; set; }
+		public double? Power { get; set; }
+		public double? Resistance { get; set; }
+		public double? Electric_current { get; set; }
+		public double? Inductance { get; set; }
 		public int MaterialId { get; set; }
 		public Material Material { get; set; } = null!;
 		public int ManufacturerId { get; set; }
